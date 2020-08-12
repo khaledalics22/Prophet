@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/five_dp">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/sender_image"
+        android:layout_width="@dimen/item_image_size"
+        android:layout_height="@dimen/item_image_size"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/five_dp"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/sender_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/five_dp"
+        android:layout_toEndOf="@id/sender_image"
+        android:layout_toRightOf="@id/sender_image"
+        android:padding="@dimen/five_dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        tools:text="khaled ali" />
+
+   <!-- <ImageButton
+        android:id="@+id/add_friend_ibtn"
+        android:layout_width="wrap_content"
+        android:contentDescription="@string/add_friend"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/ten_dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_baseline_add_circle_outline_24"
+        android:text="@string/add_friend" />-->
+
+    <TextView
+        android:id="@+id/sender_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sender_name"
+        android:layout_toStartOf="@id/sender_msg_date"
+        android:layout_toLeftOf="@id/sender_msg_date"
+        android:layout_toEndOf="@id/sender_image"
+        android:layout_toRightOf="@id/sender_image"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:padding="@dimen/five_dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@android:color/darker_gray"
+        tools:text="hi! bro, what's up?" />
+
+    <TextView
+        android:id="@+id/sender_msg_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sender_name"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/five_dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/darker_gray"
+        tools:text="now" />
+</RelativeLayout>

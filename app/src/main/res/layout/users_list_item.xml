@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/five_dp">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_image"
+        android:layout_width="@dimen/item_image_size"
+        android:layout_height="@dimen/item_image_size"
+        android:layout_alignTop="@id/user_name"
+        android:layout_margin="@dimen/five_dp"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/add_friend_btn"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="@dimen/five_dp"
+        android:layout_marginLeft="@dimen/five_dp"
+        android:layout_marginEnd="@dimen/five_dp"
+        android:layout_marginRight="@dimen/five_dp"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="@dimen/five_dp"
+        android:layout_toStartOf="@id/add_friend_btn"
+        android:layout_toLeftOf="@id/add_friend_btn"
+        android:layout_toEndOf="@id/user_image"
+        android:layout_toRightOf="@id/user_image"
+        android:textAppearance="?android:textAppearanceLarge"
+        tools:text="khaled ali" />
+
+    <Button
+        android:id="@+id/add_friend_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/five_dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/add_friend"
+        android:scaleType="fitXY"
+        android:text="@string/add_friend"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/btn_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/user_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_friend_btn"
+        android:layout_marginStart="@dimen/five_dp"
+        android:layout_marginLeft="@dimen/five_dp"
+        android:layout_marginRight="@dimen/five_dp"
+        android:layout_toEndOf="@id/user_image"
+        android:layout_toRightOf="@id/user_image"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:padding="@dimen/five_dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@android:color/darker_gray"
+        tools:text="About me" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/user_about"
+        android:background="@color/colorPrimary" />
+
+</RelativeLayout>

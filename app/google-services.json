@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1021647583046",
+    "firebase_url": "https://prophet-1985e.firebaseio.com",
+    "project_id": "prophet-1985e",
+    "storage_bucket": "prophet-1985e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1021647583046:android:4a1a174ab1b525c0041747",
+        "android_client_info": {
+          "package_name": "com.example.prophet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1021647583046-faq0g00o0ge5510remqivfmuhvcakv71.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.prophet",
+            "certificate_hash": "58d6b787c8c08a18b9d1a527257edb4e6b1b2521"
+          }
+        },
+        {
+          "client_id": "1021647583046-uo8gtot78fil027ta9rgpt8i8baqe6rh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_tZP_7HlbOyFTAlXNgpSpt0Xq7BB_3NY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1021647583046-uo8gtot78fil027ta9rgpt8i8baqe6rh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
