@@ -26,7 +26,7 @@ import com.example.prophet.Database.ProphetContract;
 import com.example.prophet.Entities.Chat;
 import com.example.prophet.Entities.Message;
 import com.example.prophet.Entities.Request;
-import com.example.prophet.Entities.SignedUser;
+import com.example.prophet.Entities.Utils;
 import com.example.prophet.Entities.User;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -106,7 +106,7 @@ public class ChatActivity extends AppCompatActivity implements LoaderManager.Loa
                 onSignedInListener(user.getDisplayName(), user.getEmail(), user.getPhotoUrl(), user.getUid());
             } else {
                 onSignedOutListener();
-                SignedUser.user = null;
+                Utils.user = null;
                 startActivityForResult(
                         AuthUI.getInstance()
                                 .createSignInIntentBuilder()
@@ -145,7 +145,7 @@ public class ChatActivity extends AppCompatActivity implements LoaderManager.Loa
     private void createChatRoom(Request request) {
         ArrayList<String> members = new ArrayList<>();
         members.add(request.getmSenderId());
-        members.add(SignedUser.user.getmUid());
+        members.add(Utils.user.getmUid());
         DatabaseReference pushedRef = mChatRef.push();
         String chatID = pushedRef.getKey();
         Chat chat = new Chat(chatID, null, members
@@ -191,7 +191,7 @@ public class ChatActivity extends AppCompatActivity implements LoaderManager.Loa
                     Request request = snapshot.getValue(Request.class);
                     if (request != null
                             && request.getmReceiverId().matches(
-                            SignedUser.user.getmUid())
+                            Utils.user.getmUid())
                             && request.getmFlag().matches("false")) {
                         mReqNum++;
                     }
@@ -276,9 +276,9 @@ public class ChatActivity extends AppCompatActivity implements LoaderManager.Loa
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (!snapshot.exists()) {
                     UsersRef.child(uid).setValue(user);
-                    SignedUser.user = user;
+                    Utils.user = user;
                 } else {
-                    SignedUser.user = snapshot.getValue(User.class);
+                    Utils.user = snapshot.getValue(User.class);
                 }
                 getFriendsRequests();
                 userChats();
@@ -292,7 +292,7 @@ public class ChatActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     private void userChats() {
-        mUserChatsRef = FirebaseDatabase.getInstance().getReference().child("user_chats").child(SignedUser.user.getmUid());
+        mUserChatsRef = FirebaseDatabase.getInstance().getReference().child("user_chats").child(Utils.user.getmUid());
         if (mUserChatsChildEventListener == null) {
             mUserChatsChildEventListener = new ChildEventListener() {
                 @Override
@@ -332,7 +332,7 @@ public class ChatActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        SignedUser.user = null;
+        Utils.user = null;
     }
 
     @NonNull
@@ -358,24 +358,24 @@ public class ChatActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onAddInterestBtnClicked(String inter) {
-        ArrayList<String> newList = SignedUser.user.getmInterests();
+        ArrayList<String> newList = Utils.user.getmInterests();
         newList.add(inter);
-        UsersRef.child(SignedUser.user.getmUid()).child("mInterests").setValue(newList).addOnSuccessListener(new OnSuccessListener<Void>() {
+        UsersRef.child(Utils.user.getmUid()).child("mInterests").setValue(newList).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(ChatActivity.this, R.string.added, Toast.LENGTH_SHORT).show();
-                SignedUser.user.getmInterests().add(inter);
+                Utils.user.getmInterests().add(inter);
             }
         });
     }
 
     @Override
     public void onEditAboutMeBtnClicked(String aboutMe) {
-        UsersRef.child(SignedUser.user.getmUid()).child("mAboutMe").setValue(aboutMe).addOnSuccessListener(new OnSuccessListener<Void>() {
+        UsersRef.child(Utils.user.getmUid()).child("mAboutMe").setValue(aboutMe).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(ChatActivity.this, R.string.saved, Toast.LENGTH_SHORT).show();
-                SignedUser.user.setmAboutMe(aboutMe);
+                Utils.user.setmAboutMe(aboutMe);
             }
         });
     }
@@ -399,7 +399,7 @@ public class ChatActivity extends AppCompatActivity implements LoaderManager.Loa
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.profile_menu:
-                ProfileBottomSheetFragment profile = ProfileBottomSheetFragment.getInstance(SignedUser.user, this);
+                ProfileBottomSheetFragment profile = ProfileBottomSheetFragment.getInstance(Utils.user, this);
                 profile.show(getSupportFragmentManager(), ProfileBottomSheetFragment.TAG);
                 return true;
             case R.id.settings_menu:

@@ -6,13 +6,14 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prophet.Entities.User;
+import com.example.prophet.Entities.Utils;
 import com.example.prophet.R;
 import com.squareup.picasso.Picasso;
 
@@ -31,7 +32,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Holder> {
 
     public interface OnClickedListener {
         void onUserClicked(User user);
-        void onAddFriendClicked(String uid,String imageUri,String name);
+
+        void onAddFriendClicked(String uid, String imageUri, String name);
     }
 
     public UserAdapter(Context mContext, Cursor mCursor) {
@@ -87,12 +89,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.Holder> {
         TextView userAbout;
         @BindView(R.id.user_name)
         TextView userName;
+        @BindView(R.id.add_friend_btn)
+        ImageButton addFriendBtn;
 
         @OnClick(R.id.add_friend_btn)
         public void onAddFriendClicked(View view) {
             mOnItemClickedListener.onAddFriendClicked(mUsers.get(getAdapterPosition()).getmUid()
-                    ,mUsers.get(getAdapterPosition()).getmImageUri()
-                    ,mUsers.get(getAdapterPosition()).getmName());
+                    , mUsers.get(getAdapterPosition()).getmImageUri()
+                    , mUsers.get(getAdapterPosition()).getmName());
+            Utils.ImageViewAnimatedChange(mContext, addFriendBtn, R.drawable.ic_baseline_done_24);
         }
 
         public Holder(@NonNull View itemView) {

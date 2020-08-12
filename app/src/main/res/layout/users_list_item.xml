@@ -24,31 +24,33 @@
         android:layout_marginLeft="@dimen/five_dp"
         android:layout_marginEnd="@dimen/five_dp"
         android:layout_marginRight="@dimen/five_dp"
-        android:gravity="center_vertical"
         android:layout_marginBottom="@dimen/five_dp"
         android:layout_toStartOf="@id/add_friend_btn"
         android:layout_toLeftOf="@id/add_friend_btn"
         android:layout_toEndOf="@id/user_image"
         android:layout_toRightOf="@id/user_image"
+        android:gravity="center_vertical"
         android:textAppearance="?android:textAppearanceLarge"
         tools:text="khaled ali" />
 
-    <Button
+    <ImageButton
         android:id="@+id/add_friend_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="top"
-        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/five_dp"
-        android:background="@android:color/transparent"
+        android:layout_marginStart="@dimen/five_dp"
+        android:layout_marginLeft="@dimen/five_dp"
+        android:layout_marginEnd="@dimen/five_dp"
+        android:layout_marginRight="@dimen/five_dp"
+        android:layout_marginBottom="@dimen/five_dp"
+        android:background="@color/colorPrimary"
         android:contentDescription="@string/add_friend"
-        android:scaleType="fitXY"
-        android:text="@string/add_friend"
+        android:padding="@dimen/five_dp"
+
+        android:src="@drawable/ic_baseline_person_add_24"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/btn_text_size"
         android:textStyle="bold" />
 
     <TextView
@@ -60,13 +62,15 @@
         android:layout_marginLeft="@dimen/five_dp"
         android:layout_marginRight="@dimen/five_dp"
         android:layout_toEndOf="@id/user_image"
+        android:layout_toLeftOf="@id/add_friend_btn"
         android:layout_toRightOf="@id/user_image"
         android:ellipsize="end"
         android:maxLines="2"
         android:padding="@dimen/five_dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@android:color/darker_gray"
-        tools:text="About me" />
+        tools:text="About me"
+        android:layout_toStartOf="@id/add_friend_btn" />
 
     <View
         android:id="@+id/view"

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prophet.Adapters.UserAdapter;
 import com.example.prophet.Entities.Request;
-import com.example.prophet.Entities.SignedUser;
+import com.example.prophet.Entities.Utils;
 import com.example.prophet.Entities.User;
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -73,8 +73,8 @@ public class AddFriendActivity extends AppCompatActivity implements UserAdapter.
     private void addFriendRequest(String uId, String imageUri, String name) {
         DatabaseReference pushedReq = mFriendsRef.push();
         String key = pushedReq.getKey();
-        Request request = new Request(imageUri, SignedUser.user.getmUid()
-                , uId, name, key, SignedUser.user.getmName(), SignedUser.user.getmImageUri());
+        Request request = new Request(imageUri, Utils.user.getmUid()
+                , uId, name, key, Utils.user.getmName(), Utils.user.getmImageUri());
         mFriendsRef.child(key).setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -106,7 +106,7 @@ public class AddFriendActivity extends AppCompatActivity implements UserAdapter.
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 User user = snapshot.getValue(User.class);
-                if (!SignedUser.user.getmUid().matches(user.getmUid()))
+                if (!Utils.user.getmUid().matches(user.getmUid()))
                     mUsersAdapter.addUser(user);
             }
 

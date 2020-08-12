@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prophet.Entities.Chat;
-import com.example.prophet.Entities.SignedUser;
+import com.example.prophet.Entities.Utils;
 import com.example.prophet.MessagesActivity;
 import com.example.prophet.R;
 import com.google.firebase.database.DataSnapshot;
@@ -96,6 +96,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.Holder> {
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, MessagesActivity.class);
                     intent.putExtra("uid", mChats.get(getAdapterPosition()).getmChatId());
+                    intent.putExtra("chat_name", mChats.get(getAdapterPosition()).getmChatName());
                     mContext.startActivity(intent);
                 }
             });
@@ -105,7 +106,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.Holder> {
             if (mChats != null) {
                 Chat chat = mChats.get(position);
                 for (String member : chat.getmMembers()) {
-                    if (!member.matches(SignedUser.user.getmUid())) {
+                    if (!member.matches(Utils.user.getmUid())) {
                         FirebaseDatabase.getInstance()
                                 .getReference().child("users").child(member).child("mImageUri")
                                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -126,6 +127,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.Holder> {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                         String name = snapshot.getValue(String.class);
+                                        mChats.get(getAdapterPosition()).setmChatName(name);
                                         chatName.setText(name);
                                     }
 

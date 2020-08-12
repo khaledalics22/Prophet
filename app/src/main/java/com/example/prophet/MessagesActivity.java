@@ -7,14 +7,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prophet.Adapters.MessageAdapter;
 import com.example.prophet.Entities.Message;
-import com.example.prophet.Entities.SignedUser;
+import com.example.prophet.Entities.Utils;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,7 +45,7 @@ public class MessagesActivity extends AppCompatActivity {
             Message message = new Message(
                     messageEt.getText().toString().trim()
                     , String.valueOf(System.currentTimeMillis())
-                    , SignedUser.user.getmUid()
+                    , Utils.user.getmUid()
                     , "null");
             mChatMessagesRef.child(chatID).push().setValue(message);
             messageEt.setText("");
@@ -62,6 +62,10 @@ public class MessagesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
         chatID = getIntent().getStringExtra("uid");
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!=null){
+            actionBar.setTitle(getIntent().getStringExtra("chat_name"));
+        }
         if (chatID == null) {
             Toast.makeText(this, R.string.Error, Toast.LENGTH_SHORT).show();
             finish();

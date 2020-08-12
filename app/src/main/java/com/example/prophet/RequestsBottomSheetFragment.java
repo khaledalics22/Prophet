@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prophet.Adapters.RequestsAdapter;
 import com.example.prophet.Entities.Request;
-import com.example.prophet.Entities.SignedUser;
+import com.example.prophet.Entities.Utils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -90,7 +90,7 @@ public class RequestsBottomSheetFragment extends BottomSheetDialogFragment {
                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                     Request request = snapshot.getValue(Request.class);
                     if (request != null
-                            && request.getmReceiverId().matches(SignedUser.user.getmUid())
+                            && request.getmReceiverId().matches(Utils.user.getmUid())
                             && request.getmFlag().matches("false"))
                         adapter.addRequest(request);
                 }

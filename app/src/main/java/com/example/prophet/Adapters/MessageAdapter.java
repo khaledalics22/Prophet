@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.prophet.Entities.Message;
-import com.example.prophet.Entities.SignedUser;
+import com.example.prophet.Entities.Utils;
 import com.example.prophet.R;
 
 import java.util.ArrayList;
@@ -72,7 +72,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageH
 
         public void bind(int position) {
             RelativeLayout.LayoutParams params;
-            if (mMessages.get(position).getmAuthorId().matches(SignedUser.user.getmUid())) {
+            if (mMessages.get(position).getmAuthorId().matches(Utils.user.getmUid())) {
                 params = (RelativeLayout.LayoutParams) cardView.getLayoutParams();
                 params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
