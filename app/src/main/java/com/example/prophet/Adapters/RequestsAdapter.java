@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -97,7 +98,7 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.Holder
         @BindView(R.id.user_name)
         TextView userName;
         @BindView(R.id.add_friend_btn)
-        Button confirmBtn;
+        ImageButton confirmBtn;
         @BindView(R.id.view)
         View view;
 
@@ -109,7 +110,7 @@ public class RequestsAdapter extends RecyclerView.Adapter<RequestsAdapter.Holder
         public Holder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            confirmBtn.setText(R.string.confirm);
+            confirmBtn.setImageResource(R.drawable.ic_baseline_done_24);
             requestAbout.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
         }

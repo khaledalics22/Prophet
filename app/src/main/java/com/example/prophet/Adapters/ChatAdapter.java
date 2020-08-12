@@ -69,8 +69,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.Holder> {
     @Override
     public int getItemCount() {
         if (mChats != null) return mChats.size();
-        if (mCursor == null) return 0;
-        else return mCursor.getCount();
+        return 0;
     }
 
     public void clear() {

@@ -81,7 +81,7 @@ public class MessagesActivity extends AppCompatActivity {
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
                 if(bottom<oldBottom){
-                    recyclerView.smoothScrollToPosition(messageAdapter.getItemCount()-1);
+                    recyclerView.smoothScrollToPosition(messageAdapter.getItemCount()>0?messageAdapter.getItemCount()-1:0);
                 }
             }
         });

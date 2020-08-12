@@ -269,7 +269,6 @@ public class ChatActivity extends AppCompatActivity implements LoaderManager.Loa
                 }
             };
 
-        mChatRef.addChildEventListener(mChatChildEventListener);
         User user = new User(displayName, email, photoUrl.toString(), uid);
         UsersRef.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -292,6 +291,7 @@ public class ChatActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     private void userChats() {
+        mChatRef.addChildEventListener(mChatChildEventListener);
         mUserChatsRef = FirebaseDatabase.getInstance().getReference().child("user_chats").child(Utils.user.getmUid());
         if (mUserChatsChildEventListener == null) {
             mUserChatsChildEventListener = new ChildEventListener() {
